@@ -82,7 +82,7 @@ body {
   height: var(--size-unit);
   background-image: url("../images/ship.png");
   animation: move-8-units-X var(--ships-animation-time) steps(8) infinite;
-  /* left: 0; */
+  left: 0;
   position: fixed;
 }
 
@@ -108,7 +108,7 @@ body {
   height: var(--size-unit);
   background-image: url("../images/explosion.png");
   animation: move-17-units-X var(--explosions-animation-time) steps(17) forwards;
-  /* position: fixed; */
+  position: fixed;
 }
 
 .explosion--big {
@@ -116,7 +116,7 @@ body {
   height: calc(var(--size-unit) * 2);
   background-image: url("../images/explosion-big.png");
   animation: move-34-units-X var(--explosions-animation-time) steps(17) forwards;
-  /* position: fixed; */
+  position: fixed;
 }
 
 .missile {
@@ -174,4 +174,8 @@ body {
 
 .hide {
   display: none;
+}
+
+.hit {
+  background-color: var(--secondary-color);
 }

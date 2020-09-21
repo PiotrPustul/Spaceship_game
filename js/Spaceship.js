@@ -1,4 +1,4 @@
-import { Missile } from './Missile.js'
+import { Missile } from './Missile.js';
 
 export class Spaceship {
 
@@ -13,20 +13,19 @@ export class Spaceship {
     }
 
     init() {
-        this.#setPosition();
+        this.setPosition();
         this.#eventListeners();
         this.#gameLoop();
     }
 
-    #setPosition() {
+    setPosition() {
         this.element.style.bottom = '0px';
-        this.element.style.left = `${window.innerWidth / 2 -
-            this.#getPosition()
-            }px`
+        this.element.style.left = `${window.innerWidth / 2 - this.#getPosition()
+            }px`;
     }
 
     #getPosition() {
-        return this.element.offsetLeft + this.element.offsetWidth / 2
+        return this.element.offsetLeft + this.element.offsetWidth / 2;
     }
 
     #eventListeners() {
@@ -35,14 +34,11 @@ export class Spaceship {
                 case 37:
                     this.#leftArrow = true;
                     break;
-            }
-            switch (keyCode) {
                 case 39:
                     this.#rightArrow = true;
                     break;
             }
         });
-
         window.addEventListener('keyup', ({ keyCode }) => {
             switch (keyCode) {
                 case 32:
@@ -51,8 +47,6 @@ export class Spaceship {
                 case 37:
                     this.#leftArrow = false;
                     break;
-            }
-            switch (keyCode) {
                 case 39:
                     this.#rightArrow = false;
                     break;
@@ -67,12 +61,13 @@ export class Spaceship {
 
     #whatKey() {
         if (this.#leftArrow && this.#getPosition() > 12) {
-            this.element.style.left = `${parseInt(this.element.style.left, 10) - this.#modifier}px`;
-        };
-
+            this.element.style.left = `${parseInt(this.element.style.left, 10) - this.#modifier
+                }px`;
+        }
         if (this.#rightArrow && this.#getPosition() + 12 < window.innerWidth) {
-            this.element.style.left = `${parseInt(this.element.style.left, 10) + this.#modifier}px`;
-        };
+            this.element.style.left = `${parseInt(this.element.style.left, 10) + this.#modifier
+                }px`;
+        }
     }
 
     #shot() {
