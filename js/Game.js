@@ -26,6 +26,7 @@ class Game {
         this.#ship.init();
         this.#newGame();
         this.#htmlElements.button.addEventListener('click', () => this.#newGame());
+
     }
 
     #newGame() {
@@ -75,7 +76,7 @@ class Game {
         this.#enemies.push(enemy);
     }
 
-    #checkPosition() {
+   #checkPosition() {
         this.#enemies.forEach((enemy, enemyIndex, enemiesArr) => {
             const enemyPosition = {
                 top: enemy.element.offsetTop,
