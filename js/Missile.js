@@ -1,4 +1,5 @@
 export class Missile {
+
     constructor(x, y, container) {
         this.x = x;
         this.y = y;

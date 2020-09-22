@@ -2,7 +2,6 @@ import { Spaceship } from './Spaceship.js';
 import { Enemy } from './Enemy.js';
 
 class Game {
-
     #htmlElements = {
         spaceship: document.querySelector('[data-spaceship]'),
         container: document.querySelector('[data-container]'),
@@ -14,7 +13,7 @@ class Game {
     };
     #ship = new Spaceship(
         this.#htmlElements.spaceship,
-        this.#htmlElements.container
+        this.#htmlElements.container,
     );
     #enemies = [];
     #lives = null;
@@ -44,7 +43,8 @@ class Game {
 
     #endGame() {
         this.#htmlElements.modal.classList.remove('hide');
-        this.#htmlElements.scoreInfo.textContent = `You loose! Your score is: ${this.#score}`;
+        this.#htmlElements.scoreInfo.textContent = `You loose! Your score is: ${this.#score
+            }`;
         this.#enemies.forEach((enemy) => enemy.explode());
         this.#enemies.length = 0;
         clearInterval(this.#createEnemyInterval);
@@ -53,10 +53,20 @@ class Game {
 
     #randomNewEnemy() {
         const randomNumber = Math.floor(Math.random() * 5) + 1;
-
-        randomNumber % 5 ?
-            this.#createNewEnemy(this.#htmlElements.container, this.#enemiesInterval, 'enemy', 'explosion') :
-            this.#createNewEnemy(this.#htmlElements.container, this.#enemiesInterval * 2, 'enemy--big', 'explosion--big', 3);
+        randomNumber % 5
+            ? this.#createNewEnemy(
+                this.#htmlElements.container,
+                this.#enemiesInterval,
+                'enemy',
+                'explosion',
+            )
+            : this.#createNewEnemy(
+                this.#htmlElements.container,
+                this.#enemiesInterval * 2,
+                'enemy--big',
+                'explosion--big',
+                3,
+            );
     }
 
     #createNewEnemy(...params) {
@@ -66,7 +76,6 @@ class Game {
     }
 
     #checkPosition() {
-
         this.#enemies.forEach((enemy, enemyIndex, enemiesArr) => {
             const enemyPosition = {
                 top: enemy.element.offsetTop,
@@ -74,13 +83,11 @@ class Game {
                 bottom: enemy.element.offsetTop + enemy.element.offsetHeight,
                 left: enemy.element.offsetLeft,
             };
-
             if (enemyPosition.top > window.innerHeight) {
                 enemy.explode();
                 enemiesArr.splice(enemyIndex, 1);
                 this.#updateLives();
-            };
-
+            }
             this.#ship.missiles.forEach((missile, missileIndex, missileArr) => {
                 const missilePosition = {
                     top: missile.element.offsetTop,
@@ -88,7 +95,6 @@ class Game {
                     bottom: missile.element.offsetTop + missile.element.offsetHeight,
                     left: missile.element.offsetLeft,
                 };
-
                 if (
                     missilePosition.bottom >= enemyPosition.top &&
                     missilePosition.top <= enemyPosition.bottom &&
@@ -102,17 +108,14 @@ class Game {
                     missile.remove();
                     missileArr.splice(missileIndex, 1);
                     this.#updateScore();
-                };
-
+                }
                 if (missilePosition.bottom < 0) {
                     missile.remove();
                     missileArr.splice(missileIndex, 1);
-                };
-
+                }
             });
         });
     }
-
     #updateScore() {
         this.#score++;
         if (!(this.#score % 5)) {
@@ -120,7 +123,6 @@ class Game {
         }
         this.#updateScoreText();
     }
-
     #updateLives() {
         this.#lives--;
         this.#updateLivesText();
@@ -134,7 +136,6 @@ class Game {
     #updateScoreText() {
         this.#htmlElements.score.textContent = `Score: ${this.#score}`;
     }
-
     #updateLivesText() {
         this.#htmlElements.lives.textContent = `Lives: ${this.#lives}`;
     }
@@ -143,4 +144,4 @@ class Game {
 window.onload = function () {
     const game = new Game();
     game.init();
-}
+};

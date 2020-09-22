@@ -6,7 +6,6 @@ export class Spaceship {
     #modifier = 10;
     #leftArrow = false;
     #rightArrow = false;
-
     constructor(element, container) {
         this.element = element;
         this.container = container;
@@ -27,8 +26,8 @@ export class Spaceship {
     #getPosition() {
         return this.element.offsetLeft + this.element.offsetWidth / 2;
     }
-
     #eventListeners() {
+
         window.addEventListener('keydown', ({ keyCode }) => {
             switch (keyCode) {
                 case 37:
@@ -39,6 +38,7 @@ export class Spaceship {
                     break;
             }
         });
+
         window.addEventListener('keyup', ({ keyCode }) => {
             switch (keyCode) {
                 case 32:
@@ -57,7 +57,7 @@ export class Spaceship {
     #gameLoop = () => {
         this.#whatKey();
         requestAnimationFrame(this.#gameLoop);
-    }
+    };
 
     #whatKey() {
         if (this.#leftArrow && this.#getPosition() > 12) {
