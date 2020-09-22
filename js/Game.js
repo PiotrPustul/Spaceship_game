@@ -66,6 +66,7 @@ class Game {
     }
 
     #checkPosition() {
+
         this.#enemies.forEach((enemy, enemyIndex, enemiesArr) => {
             const enemyPosition = {
                 top: enemy.element.offsetTop,
@@ -107,6 +108,7 @@ class Game {
                     missile.remove();
                     missileArr.splice(missileIndex, 1);
                 };
+
             });
         });
     }
